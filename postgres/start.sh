@@ -10,5 +10,5 @@ else
     echo "Docker network '${NETWORK_NAME}' already exists."
 fi
 
-docker compose up -d
+docker compose up -d --force-recreate
 docker compose ps
