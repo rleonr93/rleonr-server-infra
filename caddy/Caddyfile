@@ -1,0 +1,9 @@
+n8n.rleonr.com {
+    reverse_proxy n8n-app:5678
+}
+postgres.rleonr.com {
+    reverse_proxy postgres:5432
+}
+backups.rleonr.com {
+    reverse_proxy duplicati:8200
+}
