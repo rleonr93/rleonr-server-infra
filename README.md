@@ -1,4 +1,4 @@
-# Readme
+# Ricardo's Personal Projects Server Infra
 This repo contains docker configurations, shell scripts and infrastructure-as-code for my personal server's applications and services. I decided to split docker-compose files across service folders instead of having to look at one big compose file containing all configs.
 
 ## Architecture
