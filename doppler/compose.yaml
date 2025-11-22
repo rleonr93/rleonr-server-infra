@@ -15,6 +15,7 @@ services:
         DOPPLER_TOKEN=$DOPPLER_TOKEN_N8N doppler secrets download -p n8n  --no-file --format=env > /secrets/n8n_${ENV}.env &&
         DOPPLER_TOKEN=$DOPPLER_TOKEN_BROWSERLESS doppler secrets download -p browserless  --no-file --format=env > /secrets/browserless_${ENV}.env &&
         DOPPLER_TOKEN=$DOPPLER_TOKEN_DUPLICATI doppler secrets download -p duplicati  --no-file --format=env > /secrets/duplicati_${ENV}.env &&
+        DOPPLER_TOKEN=$DOPPLER_TOKEN_CADDY doppler secrets download -p caddy  --no-file --format=env > /secrets/caddy_${ENV}.env &&
         echo "Secrets file created successfully"
       '
     profiles:

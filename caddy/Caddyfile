@@ -1,13 +1,13 @@
 {
     acme_ca https://acme-v02.api.letsencrypt.org/directory
-    email   rleonr@protonmail.com
+    email   {env.LETS_ENCRYPT_EMAIL}
 }
-n8n.rleonr.com {
+n8n.{$CADDY_HOST} {
     reverse_proxy n8n-app:5678
 }
-postgres.rleonr.com {
+postgres.{$CADDY_HOST} {
     reverse_proxy postgres:5432
 }
-backups.rleonr.com {
+backups{$CADDY_HOST} {
     reverse_proxy duplicati:8200
 }
