@@ -68,7 +68,6 @@ services:
     profiles:
       - runtime
 
-
 networks:
   web:
     name: web
