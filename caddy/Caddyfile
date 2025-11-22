@@ -1,3 +1,7 @@
+{
+    acme_ca https://acme-v02.api.letsencrypt.org/directory
+    email   rleonr@protonmail.com
+}
 n8n.rleonr.com {
     reverse_proxy n8n-app:5678
 }

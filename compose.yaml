@@ -1,0 +1,74 @@
+services:
+  doppler-injector:
+    image: dopplerhq/cli:latest
+    container_name: "doppler-injector"
+    env_file:
+      - ./.env
+    volumes:
+      - ./env/:/secrets
+    profiles:
+      - setup
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    networks:
+      - web
+    profiles:
+      - runtime
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n-app
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    networks:
+      - web
+    depends_on:
+      - postgres
+    profiles:
+      - runtime
+
+  browserless-chromium:
+    image: ghcr.io/browserless/chromium
+    container_name: browserless-chromium
+    networks:
+      - web
+    profiles:
+      - runtime
+
+  duplicati:
+    image: duplicati/duplicati
+    container_name: duplicati
+    restart: unless-stopped
+    ports:
+      - "8200:8200"
+    networks:
+      - web
+    profiles:
+      - runtime
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - web
+    depends_on:
+      - n8n
+      - postgres
+      - duplicati
+    profiles:
+      - runtime
+
+
+networks:
+  web:
+    name: web

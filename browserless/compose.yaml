@@ -1,0 +1,13 @@
+services:
+  browserless-chromium:
+    container_name: browserless-chromium
+    env_file:
+      - ./browserless/config.ini
+      - ./env/browserless_${ENV}.env
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+

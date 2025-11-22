@@ -1,0 +1,26 @@
+services:
+  n8n:
+    container_name: n8n-app
+    env_file:
+      - ./n8n/config.ini
+      - ./env/n8n_${ENV}.env
+    ports:
+      - "5678:5678"
+    user: "1000:1000"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:5678/healthz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+
+networks:
+  web:
+    external: true
+
+volumes:
+  n8n_data:
+    name: "n8n_data"

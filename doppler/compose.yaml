@@ -1,0 +1,25 @@
+services:
+  # Fetches secrets and writes them to a file. See Command section for file name format
+  doppler-injector:
+    container_name: "doppler-injector"
+    image: dopplerhq/cli:latest # Uses the official Doppler CLI image
+    env_file:
+      - ./doppler/config.ini
+    entrypoint: sh # default entrypoint is doppler-ci. We use sh in order to print our debugging messages
+    # The command fetches secrets and writes them to a .env file on the shared volume
+    command: >
+      -c '
+        echo "Fetching secrets for ${ENV}..." &&
+        DOPPLER_TOKEN=$DOPPLER_TOKEN_POSTGRES  doppler secrets download -p postgres  --no-file --format=env > /secrets/postgres_${ENV}.env &&
+        DOPPLER_TOKEN=$DOPPLER_TOKEN_N8N doppler secrets download -p n8n  --no-file --format=env > /secrets/n8n_${ENV}.env &&
+        DOPPLER_TOKEN=$DOPPLER_TOKEN_BROWSERLESS doppler secrets download -p browserless  --no-file --format=env > /secrets/browserless_${ENV}.env &&
+        DOPPLER_TOKEN=$DOPPLER_TOKEN_DUPLICATI doppler secrets download -p duplicati  --no-file --format=env > /secrets/duplicati_${ENV}.env &&
+        echo "Secrets file created successfully"
+      '
+    networks:
+      - web
+    profiles:
+      - setup
+networks:
+  web:
+    external: true
