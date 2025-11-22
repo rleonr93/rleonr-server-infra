@@ -9,6 +9,7 @@ services:
     # The command fetches secrets and writes them to a .env file on the shared volume
     command: >
       -c '
+        export DOPPLER_CONFIG=$ENV &&
         echo "Fetching secrets for ${ENV}..." &&
         DOPPLER_TOKEN=$DOPPLER_TOKEN_POSTGRES  doppler secrets download -p postgres  --no-file --format=env > /secrets/postgres_${ENV}.env &&
         DOPPLER_TOKEN=$DOPPLER_TOKEN_N8N doppler secrets download -p n8n  --no-file --format=env > /secrets/n8n_${ENV}.env &&
@@ -16,10 +17,5 @@ services:
         DOPPLER_TOKEN=$DOPPLER_TOKEN_DUPLICATI doppler secrets download -p duplicati  --no-file --format=env > /secrets/duplicati_${ENV}.env &&
         echo "Secrets file created successfully"
       '
-    networks:
-      - web
     profiles:
       - setup
-networks:
-  web:
-    external: true
