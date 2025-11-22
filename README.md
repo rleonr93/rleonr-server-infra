@@ -1,3 +1,4 @@
+[![CI](https://github.com/rleonr93/rleonr-server-infra/actions/workflows/deploy-to-server.yml/badge.svg?branch=master)](https://github.com/rleonr93/rleonr-server-infra/actions/workflows/deploy-to-server.yml)
 
 # Personal Lab infra
 This repo contains docker configurations and shell scripts for my personal server's applications and services. I decided to split docker-compose files across service folders instead of having to look at one big compose file containing all configs.
