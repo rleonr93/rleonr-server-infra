@@ -4,8 +4,6 @@ services:
     env_file:
       - ./n8n/config.ini
       - ./env/n8n_${ENV}.env
-    ports:
-      - "5678:5678"
     user: "1000:1000"
     volumes:
       - n8n_data:/home/node/.n8n

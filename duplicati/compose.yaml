@@ -5,8 +5,6 @@ services:
     env_file:
       - ./duplicati/config.ini
       - ./env/duplicati_${ENV}.env
-    ports:
-      - "8200:8200"
     volumes:
       - duplicati_data:/data
       - /var/lib/docker/volumes:/volumes-source # Mount docker volumes folder as backup source

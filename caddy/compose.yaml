@@ -5,9 +5,6 @@ services:
     env_file:
       - ./caddy/config.ini
       - ./env/caddy_${ENV}.env
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
