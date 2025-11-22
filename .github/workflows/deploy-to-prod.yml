@@ -30,13 +30,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.ARTIFACT_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo "Adding ${{env.ARTIFACT_HOST}} to known hosts"
-          ssh-keyscan -p 22 ${{ env.ARTIFACT_HOST }} >> ~/.ssh/known_hosts
+          echo "Adding ${{var.ARTIFACT_HOST}} to known hosts"
+          ssh-keyscan -p 22 ${{ var.ARTIFACT_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
-          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${{ secrets.ARTIFACT_HOST_USER }}@${{ env.ARTIFACT_HOST }}
-          cd ${{ env.APP_PATH }}
+          ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${{ secrets.ARTIFACT_HOST_USER }}@${{ var.ARTIFACT_HOST }}
+          cd ${{ var.APP_PATH }}
           git pull origin master
           sh setup.sh
           sh start.sh
