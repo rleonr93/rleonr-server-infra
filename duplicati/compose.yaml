@@ -3,20 +3,14 @@ services:
     container_name: duplicati
     restart: unless-stopped
     env_file:
-      - config.ini
-      - env/duplicati_${ENV}.env
+      - ./duplicati/config.ini
+      - ./env/duplicati_${ENV}.env
     ports:
       - "8200:8200"
     volumes:
       - duplicati_data:/data
       - /var/lib/docker/volumes:/volumes-source # Mount docker volumes folder as backup source
       - /home/ricardo:/home-source # Mount home folder as backup source
-    networks:
-      - web
-
-networks:
-  web:
-    external: true
 
 volumes:
   duplicati_data:

@@ -4,10 +4,4 @@ services:
     env_file:
       - ./browserless/config.ini
       - ./env/browserless_${ENV}.env
-    networks:
-      - web
-
-networks:
-  web:
-    external: true
 
