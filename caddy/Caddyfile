@@ -8,6 +8,6 @@ n8n.{$CADDY_HOST} {
 postgres.{$CADDY_HOST} {
     reverse_proxy postgres:5432
 }
-backups{$CADDY_HOST} {
+backups.{$CADDY_HOST} {
     reverse_proxy duplicati:8200
 }
