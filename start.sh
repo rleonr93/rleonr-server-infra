@@ -1,6 +1,6 @@
 set -e
 
-docker compose --profile runtime  --env-file ./config.ini \
+docker compose --profile runtime  --env-file ./.env \
 -f compose.yaml \
 -f ./postgres/compose.yaml \
 -f ./n8n/compose.yaml \
