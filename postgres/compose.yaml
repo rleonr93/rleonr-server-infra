@@ -8,6 +8,7 @@ services:
     command: -c config_file=/etc/postgresql.conf
     volumes:
       - ./postgres/postgresql.conf:/etc/postgresql.conf
+      - ./postgres/init.sh:/docker-entrypoint-initdb.d/init.sh
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
