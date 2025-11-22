@@ -27,8 +27,8 @@ Each service has its own folder which includes relevant config files and a docke
 
 ## Development
 
-### Load Secrets into Docker
-Secrets are injected into services by downloading them to the `env` folder first. In order to inject secrets into a new service:
+### Load Secrets and Dynamic Variables into Docker
+Secrets and dynamic variables are injected into services by downloading them to the `env` folder first. In order to do this for a new service:
 1. Create a new project in Doppler e.g. *new-service*
 2. Create a [Service Token](https://docs.doppler.com/docs/service-tokens) e.g. *new-service-prod*
 3. Include a new DOPPLER_CONFIG_ variable on `.env` (and `.env.example` for documentation purposes) e.g. *DOPPLER_CONFIG_NEW_SERVICE*
