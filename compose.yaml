@@ -2,6 +2,7 @@ services:
   doppler-injector:
     image: dopplerhq/cli:latest
     container_name: "doppler-injector"
+    # This should be the only service reading the root env file. Other secrets will be installed on env folder upon running setup script
     env_file:
       - ./.env
     volumes:
@@ -69,6 +70,8 @@ services:
       - duplicati
     profiles:
       - runtime
+
+## Add new services here. Only include image, container_name, ports, networks, depends_on and profiles tags here. Leave the rest to service-specific compose files
 
 networks:
   web:
