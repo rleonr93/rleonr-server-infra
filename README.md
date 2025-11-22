@@ -15,11 +15,11 @@ Each service has its own folder which includes relevant config files and a docke
 
 ## Load Secrets into Docker
 Secrets are injected into services by downloading them to the `env` folder first. In order to inject secrets into a new service:
-1. Create a new project in Doppler e.g. new-service
+1. Create a new project in Doppler e.g. *new-service*
 2. Create a [Service Token](https://docs.doppler.com/docs/service-tokens) e.g. *new-service-prod*
-3. Include a new **DOPPLER_CONFIG_** variable on `.env` (and `.env.example` for documentation purposes) e.g. **DOPPLER_CONFIG_NEWS_ERVICE**
-4. Edit `doppler/compose.yaml`. Add a new line to the container command in order to download the project's. Here is where we will map the new environment variable to a doppler cli command that downloads the secrets into a file that other containers can use. e.g. `DOPPLER_TOKEN=$DOPPLER_TOKEN_NEW_SERVICE doppler secrets download -p new-service  --no-file --format=env > /secrets/new_service_${ENV}.env &&`
-5. Lastly, include the downloaded env file into the service's own `compose.yaml` file e.g. `env/new_service_${ENV}.env`
+3. Include a new **DOPPLER_CONFIG_** variable on `.env` (and `.env.example` for documentation purposes) e.g. *DOPPLER_CONFIG_NEWS_ERVICE*
+4. Edit `doppler/compose.yaml`. Add a new line to the container command in order to download the project's. Here is where we will map the new environment variable to a doppler cli command that downloads the secrets into a file that other containers can use. e.g. *DOPPLER_TOKEN=$DOPPLER_TOKEN_NEW_SERVICE doppler secrets download -p new-service  --no-file --format=env > /secrets/new_service_${ENV}.env &&*
+5. Lastly, include the downloaded env file into the service's own `compose.yaml` file e.g. *env/new_service_${ENV}.env*
 
 ## Shell Scripts
 - `setup.sh` ensures that secrets are downloaded into the `env` folder. Runs services with the `setup` profile defined in the root-level `compose.yaml` file. New services do not require to be added manually to this script. Consider following the previous section on loading secrets prior to running.
