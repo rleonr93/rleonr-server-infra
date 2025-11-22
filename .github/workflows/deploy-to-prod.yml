@@ -36,6 +36,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${{ secrets.ARTIFACT_HOST_USER }}@${{ vars.ARTIFACT_HOST }}
+          ls
           cd ${{ vars.APP_PATH }}
           git pull origin master
           sh setup.sh
