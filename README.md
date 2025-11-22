@@ -1,5 +1,5 @@
 
-# rleonr.com server infra
+# Personal Lab infra
 This repo contains docker configurations and shell scripts for my personal server's applications and services. I decided to split docker-compose files across service folders instead of having to look at one big compose file containing all configs.
 
 ## Network Architecture
